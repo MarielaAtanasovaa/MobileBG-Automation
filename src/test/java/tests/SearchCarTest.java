@@ -6,6 +6,8 @@ import pages.HomePage;
 import pages.ResultsPage;
 import pages.SearchPage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class SearchCarTest extends BaseTest {
     @Test
     public void countFourWheelDriveGolfs() {
@@ -31,11 +33,11 @@ public class SearchCarTest extends BaseTest {
         int displayedResultsCount = results.getDisplayedTotalCount();
         results.collectAllCountsFromDOM();
         int resultsInDOM = results.getTotalCount();
-
-        Assertions.assertEquals(resultsInDOM, displayedResultsCount, "The displayed total count of results does not match the actual DOM count.");
         log.info("The total listed items are: {}", results.getTotalCount());
         log.info("The 'TOP' listed items are: {}", results.getTopCount());
         log.info("The 'VIP' listed items are: {}", results.getVipCount());
         log.info("The 'BEST' listed items are: {}", results.getBestCount());
+        assertEquals(resultsInDOM, displayedResultsCount, "Mismatch between displayed total result count and the actual total number of items found in the DOM.");
+
     }
 }
