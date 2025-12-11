@@ -38,6 +38,6 @@ public class SearchCarTest extends BaseTest {
         log.info("The 'VIP' listed items are: {}", results.getVipCount());
         log.info("The 'BEST' listed items are: {}", results.getBestCount());
         assertEquals(resultsInDOM, displayedResultsCount, "Mismatch between displayed total result count and the actual total number of items found in the DOM.");
-
+        log.info("The displayed total amount is: {}", displayedResultsCount);
     }
 }

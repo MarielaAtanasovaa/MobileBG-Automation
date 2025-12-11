@@ -41,6 +41,7 @@ public class SearchPage {
     }
 
     public void selectModel(String model) {
+
         wait.until(ExpectedConditions.elementToBeClickable(modelDropdown));
         actions.clickElement(modelDropdown);
         WebElement modelOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='akSearchModeli']//input[@type='checkbox' and @data-value='" + model + "']/ancestor::label")));

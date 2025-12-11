@@ -19,6 +19,29 @@ public class Waits {
     }
 
     public void waitForPageToLoad() {
+        waitForHTMLToLoad();
+        waitForJQueryToDisappear();
+    }
+
+    private void waitForJQueryToDisappear() {
+        wait.until(webDriver -> {
+            try {
+                Object result = js.executeScript(
+                        "return window.jQuery ? jQuery.active : 0"
+                );
+                if (result != null) {
+                    return Integer.parseInt(result.toString()) == 0;
+                } else {
+                    return false;
+                }
+
+            } catch (Exception e) {
+                return true; // nothing to wait for if page has no jQuery
+            }
+        });
+    }
+
+    private void waitForHTMLToLoad() {
         wait.until(webDriver -> {
             Object result = js.executeScript("return document.readyState");
             if (result == null) {
